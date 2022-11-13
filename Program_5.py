@@ -59,15 +59,41 @@ def ExtractPositionsFromFileTxt():
 def MultiplicationStoredPostions(numbers, positions):
     multiplication = 1
     i = 0
-    while i < len(positions):
+    while i < len(positions) :
         multiplication = multiplication * numbers[positions[i]]
         i += 1
     return multiplication
 
+# Fifth task
+
+def ListShuffling(numbers):
+    answer = ''
+    ok = False
+    while not ok:
+        answer = input("Do you want randomize your numbers? Y/N: ")
+        if (answer == 'y') or (answer == 'Y') or (answer == 'n') or (answer == 'N'):
+            ok = True
+        else:
+            print("Error. Please use only Y/N to answer. Try again...")
+    if (answer == 'n') or (answer == 'N'):
+        return numbers
+    else:
+        arrayLength = len(numbers) - 1
+        i = 0
+        while i < arrayLength:
+            rand = random.randint(0, arrayLength)
+            tmp = numbers[i]
+            numbers[i] = numbers[rand]
+            numbers[rand] = tmp
+            i += 1
+        print(numbers)
+    return numbers
+
 n = InputNumber("Enter any integer number: ")
 NumbersFromNegativeNtoN = CreateListFromNegativeNtoN(n)
 print(NumbersFromNegativeNtoN)
+NumbersFromNegativeNtoN = ListShuffling(NumbersFromNegativeNtoN)
 RandomNumbersForFileTxt(n)
 positionsFromTxt = ExtractPositionsFromFileTxt()
 print(f"Positions that will be multiplicated: {positionsFromTxt}")
-print(f"Multiplication of hte elements at the specified posistions: {MultiplicationStoredPostions(NumbersFromNegativeNtoN, positionsFromTxt)}")
+print(f"Multiplication of the elements at the specified posistions: {MultiplicationStoredPostions(NumbersFromNegativeNtoN, positionsFromTxt)}")
